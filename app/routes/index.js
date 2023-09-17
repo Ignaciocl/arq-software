@@ -8,7 +8,7 @@ const parser = new XMLParser();
 
 const client = new Client();
 const router = Router();
-router.get('/ping', (req, res) => req.send('pong'));
+router.get('/ping', (req, res) => res.send('pong'));
 router.get('/metar', run(async (req) => {
   const { station } = req.query;
   const query = {
