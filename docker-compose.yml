@@ -3,6 +3,8 @@ version: '3'
 services:
     node:
         build: ./app
+        links:
+            - redis
 
     nginx:
         image: nginx:1.25.2
@@ -13,6 +15,12 @@ services:
             - ./store/static/files:/static:ro
         links:
             - node
+
+    redis:
+        container_name: redis
+        image: redis:7-alpine
+        ports:
+            - "6379:6379"
 
     graphite:
         image: graphiteapp/graphite-statsd:1.1.10-5
