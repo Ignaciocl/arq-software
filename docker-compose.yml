@@ -5,6 +5,8 @@ services:
         build: ./app
         links:
             - redis
+        volumes:
+            -   './app/:/opt/app'
 
     nginx:
         image: nginx:1.25.2
