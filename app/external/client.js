@@ -12,7 +12,7 @@ class Client {
   }
 
   async get(url, headers, queryParams) {
-    const fullUrl = `${url}?${getQueryParamsAsString(queryParams)}`
+    const fullUrl = `${url}${queryParams ? `?${getQueryParamsAsString(queryParams)}` : ''}`
     try {
       const {data} = await this.axiosClient.get(fullUrl, {headers: headers});
       return data;

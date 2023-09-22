@@ -12,7 +12,7 @@ router.get('/', run(async () => {
   const response = await client.get("https://api.spaceflightnewsapi.net/v3/articles", {}, query);
   const titles = response.map(article => article.title);
 
-  return titles;
+  return [titles, 3600];
 }));
 
 export default router;

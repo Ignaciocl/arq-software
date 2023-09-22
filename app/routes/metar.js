@@ -24,7 +24,7 @@ router.get('/', run(async (req) => {
     e.status = 400;
     throw e;
   }
-  return decode(parsed.response.data.METAR.raw_text);
+  return [decode(parsed.response.data.METAR.raw_text), 3600];
 }));
 
 export default router;
