@@ -1,0 +1,29 @@
+config:
+  environments:
+    api:
+      target: 'http://localhost:5555/api/ping'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-api"
+
+  pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
+
+  phases: # tener en cuenta la cantidad "pico" que se haya detectado en el load testing
+    - name: Warm Up
+      duration: 30
+      arrivalRate: 1000
+    - name: Loaded
+      duration: 30
+      arrivalRate: 5000
+    - name: Cool Down
+      duration: 120
+      arrivalRate: 5000
+      rampTo: 0
+
+scenarios:
+  - name: Root (/)
+    flow:
+      - get:
+          url: '/'
