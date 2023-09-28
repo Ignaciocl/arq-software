@@ -4,7 +4,7 @@
 ## Test running application
 ```curl localhost:5555/api/ping```
 
-### Metas
+### Metar
 ```curl localhost:5555/api/metar\?station=SAEZ```
 
 ### Spaceflight News
