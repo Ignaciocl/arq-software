@@ -8,12 +8,15 @@ export const startTracking = (req) => {
   req.startingTime = st;
 }
 
-export const finishTracking = (req, tags) => {
+export const finishTracking = (req, tags, startingTime) => {
   const end = Date.now();
-  const duration = end-req.startingTime;
+  let st = startingTime;
+  if (!st) {
+    st = req.startingTime;
+  }
+  const duration = end - st;
   const path = ['project.total_time', tags.path.split('/').slice(1).join('_')].join('.');
   stats.gauge(path, duration);
-  console.log(`finish tracking, finishing time is: duration, st: ${req.startingTime}, path is: ${path}`);
 }
 
 export const log = (req, metric) => {

@@ -1,5 +1,6 @@
 import { createClient } from 'redis';
 import Client from "../external/client.js";
+import {finishTracking, log, startTracking} from "./tracking.js";
 
 const redisClient = await createClient({url: "redis://redis:6379"})
 .on('error', err => console.error('Redis Client Error', err))
@@ -17,9 +18,13 @@ sub.subscribe('__keyevent@0__:expired', async (key) => {
 });
 
 export const readCache = async (req, res, next) => {
+  startTracking(req);
   const cachedValue = await redisClient.get(req.originalUrl)
   if (cachedValue){
     res.send(JSON.parse(cachedValue));
+    const path = req.originalUrl.split('?')[0];
+    finishTracking(req, {path: path});
+    log(req, `success.${path.split('/')[1]}.200`)
   }else{
     next();
   }
