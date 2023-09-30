@@ -25,7 +25,7 @@ config:
       rampTo: 5
 
 scenarios:
-  - name: Root (/)
+  - name: Quote (/)
     flow:
       - get:
           url: '/'

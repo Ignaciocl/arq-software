@@ -6,7 +6,13 @@ const client = new Client();
 const router = Router();
 
 router.get('/', run(async () => {
-  const response = await client.get("https://api.quotable.io/random", {}, {});
+  let response;
+  try {
+    response = await client.get("https://api.quotable.io/random", {}, {});
+  } catch (e) {
+    e.status = 400;
+    throw e;
+  }
   if (!response) {
     const e = new Error('An error with quotable occured');
     e.status = 400;
