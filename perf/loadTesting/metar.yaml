@@ -21,15 +21,15 @@ config:
       rampTo: 100
     - name: Loaded
       duration: 30
-      arrivalRate: 500
-      rampTo: 2000
+      arrivalRate: 200
+      rampTo: 300
     - name: Cool Down
       duration: 30
       arrivalRate: 50
       rampTo: 5
 
 scenarios:
-  - name: Root (/)
+  - name: Metar (/)
     flow:
       - get:
           url: '/?station={{ code }}'

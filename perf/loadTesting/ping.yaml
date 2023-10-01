@@ -12,12 +12,24 @@ config:
 
   phases: # revisar los numeros que tengan sentido
     - name: Warm Up
+      duration: 60
+      arrivalRate: 1
+      rampTo: 5
+    - name: Loaded
+      duration: 60
+      arrivalRate: 90
+      rampTo: 5
+    - name: Loaded 2
+      duration: 60
+      arrivalRate: 120
+      rampTo: 5
+    - name: Cool Down
       duration: 30
-      arrivalRate: 15
+      arrivalRate: 1
 
 
 scenarios:
-  - name: Root (/)
+  - name: Ping (/)
     flow:
       - get:
           url: '/'
