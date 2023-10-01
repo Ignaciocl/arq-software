@@ -10,26 +10,20 @@ config:
 
   pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 
-  phases: # revisar los numeros que tengan sentido
+  phases:
     - name: Warm Up
       duration: 60
       arrivalRate: 1
       rampTo: 5
     - name: Endurance
-      duration: 60
-      arrivalRate: 2
-    - name: Endurance 2
-      duration: 60
-      arrivalRate: 2
-    - name: Endurance 3
-      duration: 60
-      arrivalRate: 2
+      duration: 30
+      arrivalRate: 5
     - name: Cool Down
       duration: 30
       arrivalRate: 1
 
 scenarios:
-  - name: Quote (/)
+  - name: EndQuote (/)
     flow:
       - get:
           url: '/'
