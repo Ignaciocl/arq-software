@@ -29,7 +29,7 @@ config:
       rampTo: 5
 
 scenarios:
-  - name: Metar (/)
+  - name: LoadMetar (/)
     flow:
       - get:
           url: '/?station={{ code }}'
