@@ -15,12 +15,20 @@ export const finishTracking = (req, tags, startingTime) => {
     st = req.startingTime;
   }
   const duration = end - st;
-  const path = ['project.total_time', tags.path.split('/').slice(1).join('_')].join('.');
-  stats.gauge(path, duration);
+  const path = ['project.total_time', tags.path.split('/').slice(1).filter((v) => !!v).join('_')].join('.');
+  if (duration < 40000) {
+    stats.gauge(path, duration);
+  }
 }
 
-export const log = (req, metric) => {
+export const log = (req, metric, st) => {
   const end = Date.now();
-  const duration = end-req.startingTime;
-  stats.gauge(`project.${metric}`, duration);
+  let startingTime = st
+  if (!startingTime) {
+    startingTime = req.startingTime;
+  }
+  const duration = end - startingTime;
+  if (duration < 40000) {
+    stats.gauge(`project.${metric}`, duration);
+  }
 }
