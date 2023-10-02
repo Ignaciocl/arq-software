@@ -1,0 +1,29 @@
+config:
+  environments:
+    api:
+      target: 'http://localhost:5555/api/quote'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-api"
+
+  pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
+
+  phases:
+    - name: Warm Up
+      duration: 60
+      arrivalRate: 1
+      rampTo: 5
+    - name: Endurance
+      duration: 30
+      arrivalRate: 5
+    - name: Cool Down
+      duration: 30
+      arrivalRate: 1
+
+scenarios:
+  - name: EndQuote (/)
+    flow:
+      - get:
+          url: '/'

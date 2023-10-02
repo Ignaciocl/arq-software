@@ -14,22 +14,21 @@ config:
 
   pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 
-  phases: # revisar los numeros que tengan sentido
+  phases:
     - name: Warm Up
       duration: 30
-      arrivalRate: 15
-      rampTo: 100
-    - name: Loaded
-      duration: 30
-      arrivalRate: 500
-      rampTo: 2000
+      arrivalRate: 1
+      rampTo: 5
+    - name: Plain load
+      duration: 60
+      arrivalRate: 200
     - name: Cool Down
       duration: 30
-      arrivalRate: 50
-      rampTo: 5
+      arrivalRate: 100
+      rampTo: 1
 
 scenarios:
-  - name: Root (/)
+  - name: LoadMetar (/)
     flow:
       - get:
           url: '/?station={{ code }}'
