@@ -17,15 +17,14 @@ config:
   phases:
     - name: Warm Up
       duration: 30
-      arrivalRate: 15
-      rampTo: 100
+      arrivalRate: 1
+      rampTo: 2
     - name: Plain Load
       duration: 6000
-      arrivalRate: 75
+      arrivalRate: 60
     - name: Cool Down
       duration: 30
-      arrivalRate: 50
-      rampTo: 5
+      arrivalRate: 1
 
 scenarios:
   - name: EndMetar (/)
