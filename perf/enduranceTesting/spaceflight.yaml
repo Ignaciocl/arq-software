@@ -14,10 +14,10 @@ config:
     - name: Warm Up
       duration: 60
       arrivalRate: 1
-      rampTo: 5
+      rampTo: 2
     - name: Endurance
-      duration: 6000
-      arrivalRate: 50
+      duration: 300
+      arrivalRate: 4
     - name: Cool Down
       duration: 30
       arrivalRate: 1
