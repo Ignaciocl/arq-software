@@ -662,10 +662,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "graphite",
-            "uid": "f369ace0-f403-4d29-ad07-3e47d9f05ace"
-          },
+          "datasource": "graphite",
           "refCount": 0,
           "refId": "A",
           "target": "aliasByMetric(stats.gauges.project.external_api.*)"
