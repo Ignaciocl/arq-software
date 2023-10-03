@@ -1,5 +1,6 @@
 import { nanoid } from 'nanoid';
 import {finishTracking, log, startTracking} from "./tracking.js";
+import {writeCache} from "./cache.js";
 
 const id = nanoid();
 
@@ -11,6 +12,9 @@ const run = (handler) => {
       const t = Date.now();
       const logNaming = path.split('/')[1];
       const [response, expTime] = await handler(req, res, next);
+      if (expTime !== 0) {
+        await writeCache(req.originalUrl, JSON.stringify(response), expTime || 30);
+      }
       log(req, `external_api.${logNaming}`, t);
       res.setHeader('X-API-Id', id)
       res.status(!!response ? 200 : 204).json(response);
