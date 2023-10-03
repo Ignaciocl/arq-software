@@ -20,7 +20,7 @@ config:
       arrivalRate: 1
       rampTo: 2
     - name: Plain Load
-      duration: 6000
+      duration: 300
       arrivalRate: 60
     - name: Cool Down
       duration: 30
