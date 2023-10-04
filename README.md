@@ -14,7 +14,9 @@
 ```curl localhost:5555/api/quote```
 
 ## Performance Testing
-```chmod +x perf/run-scenario.sh```
+```cd perf```
+```npm install```
+```chmod +x run-scenario.sh```
 
 ### Load Testing Example
-```cd perf && ./run-scenario.sh loadTesting/ping api```
+```./run-scenario.sh loadTesting/ping api```

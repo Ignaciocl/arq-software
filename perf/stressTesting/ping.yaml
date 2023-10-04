@@ -10,20 +10,29 @@ config:
 
   pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 
-  phases: # tener en cuenta la cantidad "pico" que se haya detectado en el load testing
+  phases:
     - name: Warm Up
       duration: 30
-      arrivalRate: 1000
-    - name: Loaded
-      duration: 30
-      arrivalRate: 5000
+      arrivalRate: 5
+      rampTo: 15
+    - name: Plain load
+      duration: 60
+      arrivalRate: 15
+      rampTo: 100
+    - name: Plain load 2
+      duration: 60
+      arrivalRate: 100
+      rampTo: 200
+    - name: Plain load 3
+      duration: 60
+      arrivalRate: 200
     - name: Cool Down
-      duration: 120
-      arrivalRate: 5000
-      rampTo: 0
+      duration: 30
+      arrivalRate: 20
+      rampTo: 1
 
 scenarios:
-  - name: Root (/)
+  - name: StressPing (/)
     flow:
       - get:
           url: '/'
