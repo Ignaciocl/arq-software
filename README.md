@@ -1,10 +1,13 @@
+# Organización repositorio
+Para cada táctica aplicada, se encuentra creada una rama distinta con los respectivos comandos a correr
+
 ## Start application
 ```docker-compose up -d```
 
 ## Test running application
 ```curl localhost:5555/api/ping```
 
-### Metar
+### Meta
 ```curl localhost:5555/api/metar\?station=SAEZ```
 
 ### Spaceflight News
